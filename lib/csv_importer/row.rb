@@ -10,6 +10,7 @@ module CSVImporter
     attribute :line_number, Integer
     attribute :row_array, Array[String]
     attribute :model_klass
+    attribute :model_defaults, Hash[Symbol, Object], default: {}
     attribute :identifiers # Array[Symbol] or Proc
     attribute :after_build_blocks, Array[Proc], default: []
     attribute :skip, Virtus::Attribute::Boolean, default: false
@@ -107,7 +108,7 @@ module CSVImporter
     end
 
     def build_model
-      model_klass.new
+      model_klass.new model_defaults
     end
 
     def skip!

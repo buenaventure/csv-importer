@@ -70,7 +70,8 @@ module CSVImporter
   # Initialize and return the `Row`s for the current CSV file
   def rows
     csv.rows.map.with_index(2) do |row_array, line_number|
-      Row.new(header: header, line_number: line_number, row_array: row_array, model_klass: config.model,
+      Row.new(header: header, line_number: line_number, row_array: row_array,
+              model_klass: config.model, model_defaults: config.model_defaults,
               identifiers: config.identifiers, after_build_blocks: config.after_build_blocks)
     end
   end

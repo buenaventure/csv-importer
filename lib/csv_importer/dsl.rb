@@ -27,5 +27,9 @@ module CSVImporter
     def after_save(&block)
       config.after_save(block)
     end
+
+    def model_defaults(defaults)
+      config.model_defaults.merge! defaults
+    end
   end
 end

@@ -4,6 +4,7 @@ module CSVImporter
     include Virtus.model
 
     attribute :model
+    attribute :model_defaults, Hash[Symbol, Object], default: {}
     attribute :column_definitions, Array[ColumnDefinition], default: proc { [] }
     attribute :identifiers # Array[Symbol] or Proc
     attribute :when_invalid, Symbol, default: proc { :skip }
@@ -16,6 +17,7 @@ module CSVImporter
       self.identifiers = orig.identifiers.dup
       self.after_save_blocks = orig.after_save_blocks.dup
       self.after_build_blocks = orig.after_build_blocks.dup
+      self.model_defaults = orig.model_defaults.dup
     end
 
     def after_build(block)
